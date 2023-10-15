@@ -1,0 +1,7 @@
+boto3 >= 1.28.0
+pandas >= 2.0.0
+emoji >= 2.2.0
+demoji >= 1.1.0
+contractions >= 0.1.73
+nltk >= 3.7.0
+scikit-learn >= 1.1.0
