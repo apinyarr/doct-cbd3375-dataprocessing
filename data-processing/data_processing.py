@@ -33,7 +33,7 @@ tweeter_df = None
 
 def download_dataset(bucket = 'dataset-3375-2', file = 'cyberbullying_tweets.csv'):
   try:
-    os.remove('dataset.csv')
+    # os.remove('dataset.csv')
     # Get the object from S3
     s3 = boto3.resource('s3')
     with BytesIO() as data:
