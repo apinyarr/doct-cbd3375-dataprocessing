@@ -1,4 +1,3 @@
-import os
 import boto3
 from io import BytesIO
 import pandas as pd
@@ -200,11 +199,16 @@ def remove_unused_column():
   print(tweeter_df.head(5))
   tweeter_df[['encoded_type']].value_counts()
 
-def upload_dataset(bucket = 'dataset-3375-2', file = 'dataset.csv'):
+def write_dataset_to_csv():
+  global tweeter_df
+  output_file = 'processed_dataset.csv'
+  tweeter_df.to_csv(output_file, index=False)
+
+def upload_dataset(bucket = 'dataset-3375-2', file = 'processed_dataset.csv'):
   try:
     # Get the object from S3
     s3 = boto3.client('s3')
-    response = s3.upload_file(file, bucket, 'dataset.csv')
+    response = s3.upload_file(file, bucket, 'processed_dataset.csv')
   except Exception as e:
     print(e)
     print('error occurred')
@@ -240,6 +244,9 @@ thread8.join()
 thread9 = threading.Thread(target=remove_unused_column)
 thread9.start()
 thread9.join()
+thread9_1 = threading.Thread(target=write_dataset_to_csv)
+thread9_1.start()
+thread9_1.join()
 thread10 = threading.Thread(target=upload_dataset)
 thread10.start()
 thread10.join()
@@ -253,4 +260,5 @@ thread10.join()
 # create_clean_text_feature()
 # add_encode_type_feature
 # remove_duplicate_clean_text()
+# write_dataset_to_csv()
 # remove_unused_column()
