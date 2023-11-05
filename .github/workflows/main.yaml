@@ -1,0 +1,31 @@
+---
+name: Data Processing
+
+on:
+  push:
+    branches:
+      - 'release-*'
+  workflow_dispatch:
+
+jobs:
+  process-dataset:
+
+    permissions:
+      contents: 'read'
+
+    runs-on: linux-uat-1
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.10'
+
+      - name: Install Python Requirement
+        run: pip install -r data-processing/requirements.txt
+
+      - name: Execute Data Processing Code
+        run: python3 data-processiong/data_processing.py
