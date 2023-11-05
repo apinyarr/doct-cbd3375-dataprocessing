@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - 'release-*'
+      - 'cyb-33/github-actions-data-preparation'
   workflow_dispatch:
 
 jobs:
