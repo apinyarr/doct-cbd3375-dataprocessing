@@ -29,4 +29,4 @@ jobs:
         run: pip install -r data-processing/requirements.txt
 
       - name: Execute Data Processing Code
-        run: python3 data-processiong/data_processing.py
+        run: python3 data-processing/data_processing.py
